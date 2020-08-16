@@ -34,7 +34,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-
+        return view('admin.author.create');
     }
 
     /**
@@ -45,7 +45,9 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newAuthor = $this->authorService->create($data);
+        return view('admin.author.detail')->with('detail', $newAuthor);
     }
 
     /**

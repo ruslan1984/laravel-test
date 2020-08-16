@@ -14,4 +14,8 @@ class AuthorService{
     {
         return $author->update($data);
     }
+    public function create($data)
+    {
+        return Author::create($data);
+    }
 }

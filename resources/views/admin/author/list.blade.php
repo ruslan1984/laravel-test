@@ -9,4 +9,6 @@
         <li class="nav-item"><a href="/admin/author/{{$item->id}}" class="nav-link active">{{$item->name}}</a></li>
     @endforeach
     </ul>
+    <hr>
+    <a class='btn btn-primary' href="{{route('admin.author.create')}}">Добавить</a>
 @endsection
