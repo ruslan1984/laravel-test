@@ -21,6 +21,30 @@ class AuthorService{
             ->get();
         return  $result;
     }
+
+    public function listWithBooks(){
+        $result = Author::leftJoin('books', 'authors.id', '=', 'books.author_id')
+            ->select(
+                'authors.id as id',
+                'authors.name as name',
+                'books.id as book_id',
+                'books.name as book_name',
+            )
+            ->where(['authors.active'=>true])
+            ->get();
+            foreach ($result as $item) {
+                $data[$item['id']]['id']=$item['id'];
+                $data[$item['id']]['name']=$item['name'];
+                if ($item['book_id']) {
+                    $data[$item['id']]['books'][]=[
+                    'id' => $item['book_id'],
+                    'name' => $item['book_name']
+                ];
+                }
+            }
+        return  $data;
+    }
+
     public function detail($id):Author{
         return Author::find($id);
     }
