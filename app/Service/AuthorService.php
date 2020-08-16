@@ -1,7 +1,7 @@
 <?
 namespace App\Service;
 use App\Model\Author;
-
+use Illuminate\Support\Collection;
 class AuthorService{
     public function list()
     {
@@ -17,5 +17,12 @@ class AuthorService{
     public function create($data)
     {
         return Author::create($data);
+    }
+    public function listForSelect(){
+        $list = self::list();
+        $collection = collect($list);
+        return ($collection->mapWithKeys( function($item){
+            return [$item['id'] => $item['name']];
+        })->toArray());
     }
 }
