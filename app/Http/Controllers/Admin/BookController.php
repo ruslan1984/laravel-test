@@ -26,8 +26,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        $list = $this->bookService->list();
-        return view('admin.book.list')->with('list',$list);
+        $list = $this->bookService->listWithAuthors();
+        return view('admin.book.list')->with(
+            [
+                'list'=>$list
+            ]);
     }
 
     /**

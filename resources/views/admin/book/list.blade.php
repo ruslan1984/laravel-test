@@ -6,7 +6,11 @@
     <hr>
     <ul class="nav flex-column">
     @forelse($list as $item)
-        <li class="nav-item"><a href="/admin/book/{{$item->id}}" class="nav-link active">{{$item->name}}</a></li>
+        <li class="nav-item">
+            <a href="/admin/book/{{$item->id}}" class="nav-link active">{{$item->name}}
+                (Автор: {{$item->author_name}})
+            </a>
+        </li>
     @empty
     <div class="alert alert-info">
         Нет книг
