@@ -22,7 +22,6 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        // $list = $this->authorService->list();
         $list = $this->authorService->listWithBooksCount();
         return view('admin.author.list')->with('list',$list);
     }
@@ -91,7 +90,7 @@ class AuthorController extends Controller
         if ($updated) {
             return self::show($author);
         }else{
-            return "Ошибка обновления";
+            return self::show($author)->withError('Ошибка обновления');
         }
     }
 
@@ -103,6 +102,11 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $updated = $this->authorService->delete($author);
+        if($updated){
+            return self::index();
+        }else{
+            return self::show($author)->withError('Ошибка удаления');
+        }
     }
 }

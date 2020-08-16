@@ -16,7 +16,8 @@
 @endif
     {{ Form::model($detail,[
         'method'=>'PUT',
-        'url' => route('admin.book.update',['book'=>($detail)])
+        'url' => route('admin.book.update',['book'=>($detail)]),
+        'class'=>'form-group'
         ]) }}
     {{ Form::token()}}
     <div class="form-group">
@@ -31,6 +32,19 @@
         @include('admin.book.fields')
         <hr>
     </div>
-    <button class="btn btn-primary">Обновить</button>
+    {{Form::submit('Обновить',[
+        'class'=>'btn btn-primary'
+    ]) }}
+    {{-- <button class="btn btn-primary">Обновить</button> --}}
+    {{Form::close() }}
+    {{ Form::model($detail,[
+            'method'=>'DELETE',
+            'url' => route('admin.book.destroy',['book'=>($detail)]),
+            'class'=>'form-group'
+        ]) }}
+        {{ Form::token()}}
+        {{Form::submit('Удалить',[
+        'class'=>'btn btn-danger'
+    ]) }}
     {{Form::close() }}
 @endsection

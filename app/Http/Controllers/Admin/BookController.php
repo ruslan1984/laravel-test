@@ -119,6 +119,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $updated = $this->bookService->delete($book);
+        if($updated){
+            return self::index();
+        }else{
+            return self::show($book)->withError('Ошибка удаления');
+        }
     }
 }

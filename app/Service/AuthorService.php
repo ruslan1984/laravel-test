@@ -7,7 +7,7 @@ use DB;
 class AuthorService{
     public function list()
     {
-        return Author::get();
+        return Author::where('active',true)->get();
     }
     public function listWithBooksCount(){
         $result = Author::leftJoin('books', 'authors.id', '=', 'books.author_id')
@@ -16,6 +16,7 @@ class AuthorService{
                 'authors.name as name',
                 DB::raw('count(books.id) as book_count')
             )
+            ->where(['authors.active'=>true])
             ->groupBy('id','name')
             ->get();
         return  $result;
@@ -37,5 +38,8 @@ class AuthorService{
         return ($collection->mapWithKeys( function($item){
             return [$item['id'] => $item['name']];
         })->toArray());
+    }
+    public function delete(Author $author){
+        return $author->update(['active' => false]);
     }
 }

@@ -14,7 +14,7 @@
         </ul>
     </div>
 @endif
-<form method="POST" action="{{route('admin.author.update',['author'=>($detail)])}}">
+<form class="form-group" method="POST" action="{{route('admin.author.update',['author'=>($detail)])}}">
     @csrf
     @method("PUT")
     <div class="form-group">
@@ -30,4 +30,11 @@
     </div>
     <button class="btn btn-primary">Обновить</button>
 </form>
+<form class="form-group" method="POST" action="{{route('admin.author.destroy',['author'=>($detail)])}}">
+    @csrf
+    @method("DELETE")
+    <button class="btn btn-danger">Удалить</button>
+</form>
+
+
 @endsection

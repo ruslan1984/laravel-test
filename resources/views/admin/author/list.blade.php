@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 @section('content')
     <h1>
-        Список
+        Список Авторов
     </h1>
     <hr>
     <ul class="nav flex-column">
