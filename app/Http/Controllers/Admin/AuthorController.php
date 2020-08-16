@@ -22,7 +22,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $list = $this->authorService->list();
+        // $list = $this->authorService->list();
+        $list = $this->authorService->listWithBooksCount();
         return view('admin.author.list')->with('list',$list);
     }
 

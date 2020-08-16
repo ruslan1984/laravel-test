@@ -6,7 +6,14 @@
     <hr>
     <ul class="nav flex-column">
     @foreach($list as $item)
-        <li class="nav-item"><a href="/admin/author/{{$item->id}}" class="nav-link active">{{$item->name}}</a></li>
+        <li class="nav-item">
+            <a href="/admin/author/{{$item->id}}" class="nav-link active">
+            {{$item->name}}
+            <span class="badge badge-primary badge-pill">
+                {{$item->book_count}}
+            </span>
+            </a>
+        </li>
     @endforeach
     </ul>
     <hr>

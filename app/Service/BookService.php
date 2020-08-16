@@ -22,7 +22,7 @@ class BookService{
     {
         return $author->update($data);
     }
-    public function create(Array $data):int
+    public function create(Array $data)
     {
         return Book::create($data);
     }
