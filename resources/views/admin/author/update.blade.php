@@ -26,7 +26,7 @@
                 {{$detail->id}}
             </div>
         </div>
-        @include('admin.author.form')
+        @include('admin.author.fields')
     </div>
     <button class="btn btn-primary">Обновить</button>
 </form>

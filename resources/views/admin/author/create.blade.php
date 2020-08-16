@@ -16,7 +16,7 @@
 <form method="POST" action="{{route('admin.author.store')}}">
     @csrf
     <div class="form-group">
-        @include('admin.author.form')
+        @include('admin.author.fields')
     </div>
     <button class="btn btn-primary">Добавить</button>
 </form>

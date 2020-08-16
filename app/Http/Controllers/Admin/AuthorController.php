@@ -50,7 +50,7 @@ class AuthorController extends Controller
         ]);
         $data = $request->all();
         $newAuthor = $this->authorService->create($data);
-        return view('admin.author.detail')->with('detail', $newAuthor);
+        return view('admin.author.update')->with('detail', $newAuthor);
     }
 
     /**
@@ -61,7 +61,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return view('admin.author.detail')->with('detail', $author);
+        return view('admin.author.update')->with('detail', $author);
     }
 
     /**
