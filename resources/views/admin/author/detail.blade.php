@@ -5,11 +5,8 @@
 </h1>
 <hr>
 <form method="POST" action="{{route('admin.author.update',['author'=>($detail)])}}">
-
-    {{-- @csrf --}}
-    {{csrf_field()}}
+    @csrf
     @method("PUT")
-
     <div class="form-group">
         <div class="row">
             <div class="col-md-2">
