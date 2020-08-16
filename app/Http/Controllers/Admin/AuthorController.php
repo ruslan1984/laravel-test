@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\AuthorService;
 
-
 class AuthorController extends Controller
 {
     private $authorService;
@@ -45,6 +44,9 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
         $data = $request->all();
         $newAuthor = $this->authorService->create($data);
         return view('admin.author.detail')->with('detail', $newAuthor);
@@ -80,6 +82,9 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
         $updateData = $request->all();
         $updated = $this->authorService->update($author,$updateData);
         if ($updated) {

@@ -4,6 +4,16 @@
     Автор <u>{{$detail->name}}</u>
 </h1>
 <hr>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form method="POST" action="{{route('admin.author.update',['author'=>($detail)])}}">
     @csrf
     @method("PUT")
