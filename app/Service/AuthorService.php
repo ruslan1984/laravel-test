@@ -32,7 +32,8 @@ class AuthorService{
                 'books.id as book_id',
                 'books.name as book_name',
             )
-            ->where(['authors.active'=>true])
+            ->where(['authors.active'=>true,'books.active'=>true])
+            ->orWhere(['books.active'=>null])
             ->get();
             foreach ($result as $item) {
                 $data[$item['id']]['id']=$item['id'];
