@@ -17,8 +17,12 @@ class AuthorService{
                 DB::raw('count(books.id) as book_count'
                 )
             )
+
             ->where(['authors.active'=>true, 'books.active'=>true])
-            ->orWhere(['books.active'=>null])
+            ->orWhere(function($query) {
+                $query->where('authors.active',true)
+                ->where('books.active',null);
+            })
             ->groupBy('id','name')
             ->get();
         return  $result;
@@ -33,7 +37,10 @@ class AuthorService{
                 'books.name as book_name',
             )
             ->where(['authors.active'=>true,'books.active'=>true])
-            ->orWhere(['books.active'=>null])
+            ->orWhere(function($query) {
+                $query->where('authors.active',true)
+                ->where('books.active',null);
+            })
             ->get();
             foreach ($result as $item) {
                 $data[$item['id']]['id']=$item['id'];
