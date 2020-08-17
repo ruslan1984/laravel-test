@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/v1/books/list','Api\BookController@index');
+Route::get('/v1/books/{book}','Api\BookController@show');
+Route::post('/v1/books/update','Api\BookController@store');
+Route::delete('/v1/books/{book}','Api\BookController@destroy');
+
+// d. DELETE /api/v1/books/id удаление записи книги из бд

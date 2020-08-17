@@ -27,7 +27,12 @@ class BookService{
     {
         return Book::create($data);
     }
-    public function delete(Book $book){
+    public function delete(Book $book)
+    {
         return $book->update(['active'=>false]);
+    }
+    public function destroy(Book $book)
+    {
+        return $book->destroy($book->id);
     }
 }
