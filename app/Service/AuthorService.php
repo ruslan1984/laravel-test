@@ -14,9 +14,11 @@ class AuthorService{
             ->select(
                 'authors.id as id',
                 'authors.name as name',
-                DB::raw('count(books.id) as book_count')
+                DB::raw('count(books.id) as book_count'
+                )
             )
-            ->where(['authors.active'=>true])
+            ->where(['authors.active'=>true, 'books.active'=>true])
+            ->orWhere(['books.active'=>null])
             ->groupBy('id','name')
             ->get();
         return  $result;
