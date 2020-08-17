@@ -19,7 +19,7 @@ class BookService{
     public function detail($id):Book{
         return Book::find($id);
     }
-    public function update(Book $book,Array $data):bool
+    public function update(Book $book,Array $data)
     {
         return $book->update($data);
     }

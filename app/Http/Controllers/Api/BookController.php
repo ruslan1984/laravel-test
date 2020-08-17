@@ -45,14 +45,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            ['id'=>'required']
-        ]);
+
+        $validator = Validator::make($request->all(),
+            ['id'=>'required|numeric']
+        );
         if($validator->fails()){
             return response()->json(['Ощибка валидаии'])->setStatusCode(422);
         }
         $data = $request->all();
-        $result = $this->bookService->update(Book::find($data['id']),$data);
+        $id = Book::find($data['id']);
+        if(empty($id)){
+            return response()->json(['id не найден'])->setStatusCode(422);
+        }
+        $result = $this->bookService->update($id, $data);
         if(!$result){
             return response()->json(['Ощибка'])->setStatusCode(422);
         }
