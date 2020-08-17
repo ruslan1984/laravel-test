@@ -10,26 +10,28 @@ class AuthorService{
         return Author::where('active',true)->get();
     }
     public function listWithBooksCount(){
-        $result = Author::leftJoin('books', 'authors.id', '=', 'books.author_id')
+        $result = Author::leftJoin('books',
+            function ($join) {
+                $join->on('authors.id','books.author_id')
+                    ->where('books.active',true);
+            })
             ->select(
                 'authors.id as id',
                 'authors.name as name',
-                DB::raw('count(books.id) as book_count'
-                )
+                DB::raw('count(books.id) as book_count')
             )
-
-            ->where(['authors.active'=>true, 'books.active'=>true])
-            ->orWhere(function($query) {
-                $query->where('authors.active',true)
-                ->where('books.active',null);
-            })
+            ->where('authors.active',true)
             ->groupBy('id','name')
             ->get();
         return  $result;
     }
 
     public function listWithBooks(){
-        $result = Author::leftJoin('books', 'authors.id', '=', 'books.author_id')
+        $result = Author::leftJoin('books',
+        function ($join) {
+            $join->on('authors.id','books.author_id')
+                ->where('books.active',true);
+        })
             ->select(
                 'authors.id as id',
                 'authors.name as name',
