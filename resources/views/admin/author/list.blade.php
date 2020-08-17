@@ -5,7 +5,7 @@
     </h1>
     <hr>
     <ul class="nav flex-column">
-    @foreach($list as $item)
+    @forelse($list as $item)
         <li class="nav-item">
             <a href="/admin/author/{{$item->id}}" class="nav-link active">
             {{$item->name}}
@@ -14,7 +14,11 @@
             </span>
             </a>
         </li>
-    @endforeach
+    @empty
+    <div class="alert alert-info">
+        Спасик авторов пуст
+    </div>
+    @endforelse
     </ul>
     <hr>
     <a class='btn btn-primary' href="{{route('admin.author.create')}}">Добавить</a>
